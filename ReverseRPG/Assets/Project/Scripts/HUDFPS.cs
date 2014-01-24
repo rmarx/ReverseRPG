@@ -64,8 +64,8 @@ public class HUDFPS : MonoBehaviour
 	
 	void OnGUI () {
 		
-		//if( !LuGusUtil.debug)
-		//	return;
+		if( !LugusDebug.debug)
+			return;
 		
 		//if( opi == null )
 		//	opi = OverdrawPreventerInterface.use;
