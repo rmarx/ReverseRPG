@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class IsometricMovement : MonoBehaviour 
 {
-	public float moveSpeed = 10.0f;
+	public float moveSpeed = 50.0f;
 
 	public void SetupLocal()
 	{
