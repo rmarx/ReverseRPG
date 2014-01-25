@@ -17,6 +17,7 @@ public class ProjectileController : MonoBehaviour
 		}
 	}
 
+
 	protected IEnumerator TargetingRoutine()
 	{
 		EnemyTarget[] enemies = GameObject.FindObjectsOfType<EnemyTarget>();
@@ -25,6 +26,9 @@ public class ProjectileController : MonoBehaviour
 		{
 			foreach( EnemyTarget enemy in enemies )
 			{
+				if( enemy.markedForDestruction )
+					continue;
+
 				OrbitProjectile projectile = null;
 
 				float distance = Vector3.Distance( enemy.transform.position, this.transform.position + (this.transform.forward * targettingDistance/2.0f) );
@@ -41,9 +45,9 @@ public class ProjectileController : MonoBehaviour
 					}
 					if( projectile != null )
 					{
+						enemy.markedForDestruction = true;
 
-						projectile.OrbitEnabled = false;
-						projectile.gameObject.MoveTo( enemy.transform.position ).Time( 0.5f ).Execute();
+						projectile.Attack(enemy, 1.0f);
 						//projectile.gameObject.MoveTo( projectile.GetOrbitStartPosition() ).Time( 0.5f ).Delay(0.5f).Execute();
 					}
 
