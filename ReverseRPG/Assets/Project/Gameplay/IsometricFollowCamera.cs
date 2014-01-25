@@ -13,7 +13,7 @@ public class IsometricFollowCamera : MonoBehaviour
 		// assign variables that have to do with this class only
 		originalOffset = target.transform.position - this.transform.position;
 
-		if( target == null )
+		if (target == null) 
 		{
 			target = GameObject.Find ("Character");
 		}
