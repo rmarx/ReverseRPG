@@ -14,9 +14,6 @@ public class RunningBehaviour : MonoBehaviour {
 	
 	public void SetupGlobal()
 	{
-		// lookup references to objects / scripts outside of this script
-		//GameObject.FindObjectsOfType<VicinityBehaviour>
-		
 		// assign variables that have to do with this class only
 		if (mainCharacter == null) 
 		{
@@ -37,7 +34,8 @@ public class RunningBehaviour : MonoBehaviour {
 	protected void Update () 
 	{
 		//Checks vicinity of the player to the Teddybear
-		if (Vector3.Distance (this.transform.position, mainCharacter.transform.position) < 20.0f) {
+		if (Vector3.Distance (this.transform.position, mainCharacter.transform.position) < 20.0f) 
+		{
 			mainCharacterIsClose = true;
 			
 		} 
