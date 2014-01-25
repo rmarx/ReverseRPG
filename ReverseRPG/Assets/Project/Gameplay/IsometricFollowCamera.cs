@@ -36,6 +36,10 @@ public class IsometricFollowCamera : MonoBehaviour
 	
 	protected void Update () 
 	{
-		this.transform.position = new Vector3(target.transform.position.x - originalOffset.x, transform.position.y, target.transform.position.z - originalOffset.z );
+		Vector3 targetPos = new Vector3(target.transform.position.x - originalOffset.x, transform.position.y, target.transform.position.z - originalOffset.z );
+
+		//this.transform.position = Vector3.Lerp( this.transform.position, targetPos, 0.3f );
+		
+		this.transform.position = Vector3.Lerp( this.transform.position, targetPos, 50.0f * Time.deltaTime );
 	}
 }

@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public class IsometricMovement : MonoBehaviour 
 {
-	public float moveSpeed = 50.0f;
+	public float forwardSpeed = 20.0f;
+	public float sideWaysSpeed = 30.0f; 
 
 	public void SetupLocal()
 	{
@@ -34,9 +35,14 @@ public class IsometricMovement : MonoBehaviour
 	protected void Move()
 	{
 		float xMove = Input.GetAxis("Horizontal");
-		float zMove = Input.GetAxis("Vertical");
+		float zMove = 1.0f; //Input.GetAxis("Vertical");
 
-		Vector3 move = new Vector3( xMove * moveSpeed * Time.deltaTime, 0, zMove * moveSpeed * Time.deltaTime );
+		// when moving right, the move feels much slower for some reason...
+		if( xMove > 0.0f )
+			xMove *= 1.5f;
+
+		// moveSpeed /2.0f for x because we have a 2:1 aspect ratio in isometric
+		Vector3 move = new Vector3( xMove * sideWaysSpeed * Time.deltaTime, 0, zMove * forwardSpeed * Time.deltaTime );
 		//transform.position += Vector3.Scale( move, transform.forward );
 
 		transform.Translate( move, Space.Self );
