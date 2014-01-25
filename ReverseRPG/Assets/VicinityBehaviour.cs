@@ -29,11 +29,11 @@ public class VicinityBehaviour : MonoBehaviour {
 		{
 			mainCharacter = GameObject.Find ("Character");
 		}
-		if (teddyBearHolesParent == null) 
-		{
-			teddyBearHolesParent = GameObject.Find ("Holes");
-			teddyBearHolesChildren = teddyBearHolesParent.transform.GetComponentsInChildren<Transform> ();		
-		}
+		if (teddyBearHolesParent == null) {
+						teddyBearHolesParent = GameObject.Find ("TeddybearHolesContainer");
+				}
+		
+		teddyBearHolesChildren = teddyBearHolesParent.transform.GetComponentsInChildren<Transform>();
 	}
 	
 	protected void Awake()
@@ -49,7 +49,7 @@ public class VicinityBehaviour : MonoBehaviour {
 	protected void Update () 
 	{
 		//Checks vicinity of the player to the Teddybear
-		if (Vector3.Distance (this.transform.position, mainCharacter.transform.position) < 10f) {
+		if (Vector3.Distance (this.transform.position, mainCharacter.transform.position) < 20.0f) {
 			mainCharacterIsClose = true;
 			
 		} 
@@ -59,51 +59,46 @@ public class VicinityBehaviour : MonoBehaviour {
 		}
 
 		//Action when player is close
-		if (mainCharacterIsClose && !startedRunning) 
-		{
-			//Run to the nearest TeddybearHole object
-			foreach(Transform hole in teddyBearHolesChildren)
-			{
-				if( hole == teddyBearHolesParent.transform || hole == null)
-				{
-					continue;
-				}
-				if(closestHole == null || Vector3.Distance(this.transform.position, hole.transform.position) < Vector3.Distance(this.transform.position, closestHole.transform.position)) 
-				{
-					closestHole = hole;
-				} 
-			}
-			if(closestHole != null)
-			{
-				startedRunning = true;
-				RunToHole(closestHole);
-			} 
-			else
-			{
-				startedRunning = true;
-				startRunningAway();
-			}
+		if (mainCharacterIsClose && !startedRunning) {
+						Debug.Log ("Badass is close!");
+						//Run to the nearest TeddybearHole object
 
-			//if none present or all are taken, just run away in the direction of the game
-			//RunAway ();	
+						Debug.Log ("length of holes to run to " + teddyBearHolesChildren.Length);
+						foreach (Transform hole in teddyBearHolesChildren) {
+								if (hole == teddyBearHolesParent.transform || hole == null) {
+										continue;
+								}
+								if (closestHole == null || Vector3.Distance (this.transform.position, hole.transform.position) < Vector3.Distance (this.transform.position, closestHole.transform.position)) {
+										closestHole = hole;
+								} 
+						}
+						if (closestHole != null) {
+								startedRunning = true;
+								RunToHole (closestHole);
+								Debug.Log ("Running to closest hole aaaah!  " + closestHole.name);
+						}
+
+						//if none present or all are taken, just run away in the direction of the game
+						//RunAway ();	
+				}
+		if (mainCharacterIsClose && closestHole == null) 
+		{
+			startedRunning = true;
+			startRunningAway ();
+			Debug.Log ("Running away!! ");
 		}
 	}
 
 	protected void RunToHole(Transform hole)
 	{
-		//Move to hole
-		Debug.Log("Running to hole wee wee " + hole.name);
-		//Vector3 relativePos = this.transform.position - hole.position;
-		//this.transform.Translate(relativePos.normalized * 25.0f * Time.deltaTime, Space.World);
-
-		this.gameObject.MoveTo(hole.position).Speed(25.0f).Execute();
+		this.gameObject.MoveTo(hole.position).Speed(40.0f).Execute();
 	}
 
 	protected void startRunningAway() 
 	{
 		//Runs away from target by half of the mainCharacter's speed
 		Vector3 relativePos = this.transform.position - mainCharacter.transform.position;
-		transform.Translate (relativePos.normalized * 25.0f * Time.deltaTime);	
+		transform.Translate (relativePos.normalized.x * 40.0f * Time.deltaTime, 0, relativePos.normalized.z * 40.0f * Time.deltaTime);	
 	}
 
 }
