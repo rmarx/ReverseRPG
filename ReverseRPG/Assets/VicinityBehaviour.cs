@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class VicinityBehaviour : MonoBehaviour {
 
@@ -10,7 +11,7 @@ public class VicinityBehaviour : MonoBehaviour {
 	public Vector3 directionToMainCharacter;
 	public Vector3 directionToMove;
 	public bool mainCharacterIsClose = false;
-	public bool startRunningToHole = false;
+	public bool startedRunning = false;
 	public Transform closestHole = null;
 
 
@@ -58,7 +59,7 @@ public class VicinityBehaviour : MonoBehaviour {
 		}
 
 		//Action when player is close
-		if (mainCharacterIsClose && !startRunningToHole) 
+		if (mainCharacterIsClose && !startedRunning) 
 		{
 			//Run to the nearest TeddybearHole object
 			foreach(Transform hole in teddyBearHolesChildren)
@@ -72,17 +73,19 @@ public class VicinityBehaviour : MonoBehaviour {
 					closestHole = hole;
 				} 
 			}
-			startRunningToHole = true;
-
+			if(closestHole != null)
+			{
+				startedRunning = true;
+				RunToHole(closestHole);
+			} 
+			else
+			{
+				startedRunning = true;
+				startRunningAway();
+			}
 
 			//if none present or all are taken, just run away in the direction of the game
 			//RunAway ();	
-		}
-
-		if (startRunningToHole) 
-		{
-			RunToHole(closestHole);
-			startRunningToHole = false;
 		}
 	}
 
@@ -93,10 +96,10 @@ public class VicinityBehaviour : MonoBehaviour {
 		//Vector3 relativePos = this.transform.position - hole.position;
 		//this.transform.Translate(relativePos.normalized * 25.0f * Time.deltaTime, Space.World);
 
-		this.gameObject.MoveTo (hole.position).Speed (25.0f).Execute ();
+		this.gameObject.MoveTo(hole.position).Speed(25.0f).Execute();
 	}
 
-	protected void RunAway() 
+	protected void startRunningAway() 
 	{
 		//Runs away from target by half of the mainCharacter's speed
 		Vector3 relativePos = this.transform.position - mainCharacter.transform.position;
