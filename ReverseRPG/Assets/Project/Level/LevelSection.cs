@@ -2,25 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemyTarget : MonoBehaviour 
+public class LevelSection : MonoBehaviour 
 {
-	public RPG.DamageType damageType = RPG.DamageType.Melee;
-
-	public bool markedForDestruction = false;
-
-	public void OnAttacked()
-	{
-		EffectsManager.use.Spawn( EffectsManager.use.explosion1, this.transform.position );
-	}
-
-	public void OnInteractionDone()
-	{
-		this.collider.enabled = false;
-	}
-
-	public void OnDestroy()
-	{
-	}
+	public int length = 1; // 2, 3, 4 max
 
 	public void SetupLocal()
 	{

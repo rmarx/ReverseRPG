@@ -54,7 +54,7 @@ public class OrbitProjectile : MonoBehaviour
 
 		// note: use local coordinates here to return to the target
 		// this only works if the projectiles are children of the target!!!
-		this.gameObject.MoveTo( enemy.transform.InverseTransformPoint( enemy.transform.position ) ).IsLocal(true).Time ( halfDuration ).EaseType(backEase).Delay( halfDuration ).Execute();
+		this.gameObject.MoveTo( target.transform.InverseTransformPoint( target.transform.position ) ).IsLocal(true).Time ( halfDuration ).EaseType(backEase).Delay( halfDuration ).Execute();
 
 		yield return new WaitForSeconds( halfDuration );
 		enemy.OnAttacked();

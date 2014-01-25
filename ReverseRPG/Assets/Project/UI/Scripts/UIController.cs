@@ -2,29 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemyTarget : MonoBehaviour 
+public class UIController : LugusSingletonExisting<UIController> 
 {
-	public RPG.DamageType damageType = RPG.DamageType.Melee;
-
-	public bool markedForDestruction = false;
-
-	public void OnAttacked()
-	{
-		EffectsManager.use.Spawn( EffectsManager.use.explosion1, this.transform.position );
-	}
-
-	public void OnInteractionDone()
-	{
-		this.collider.enabled = false;
-	}
-
-	public void OnDestroy()
-	{
-	}
+	public HealthBar healthBar = null;
 
 	public void SetupLocal()
 	{
 		// assign variables that have to do with this class only
+		if( healthBar == null )
+		{
+			GameObject healthBarObj = GameObject.Find ("HealthBar");
+			healthBar = healthBarObj.GetComponent<HealthBar>();
+		}
 	}
 	
 	public void SetupGlobal()
