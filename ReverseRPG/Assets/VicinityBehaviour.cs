@@ -35,7 +35,7 @@ public class VicinityBehaviour : MonoBehaviour {
 		
 		teddyBearHolesChildren = teddyBearHolesParent.transform.GetComponentsInChildren<Transform>();
 	}
-	
+
 	protected void Awake()
 	{
 		SetupLocal();
@@ -100,5 +100,6 @@ public class VicinityBehaviour : MonoBehaviour {
 		Vector3 relativePos = this.transform.position - mainCharacter.transform.position;
 		transform.Translate (relativePos.normalized.x * 40.0f * Time.deltaTime, 0, relativePos.normalized.z * 40.0f * Time.deltaTime);	
 	}
+
 
 }
