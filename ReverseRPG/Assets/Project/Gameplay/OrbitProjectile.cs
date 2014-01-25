@@ -36,6 +36,38 @@ public class OrbitProjectile : MonoBehaviour
 		LugusCoroutines.use.StartRoutine( PropertyChangeRoutine() );
 	}
 
+	public void Attack(EnemyTarget target, float duration)
+	{
+
+		LugusCoroutines.use.StartRoutine( RestartOrbitRoutine(target, duration) );
+	}
+
+	protected IEnumerator RestartOrbitRoutine(EnemyTarget enemy, float duration)
+	{
+		this.OrbitEnabled = false;
+		float halfDuration = duration / 2.0f;
+
+		iTween.EaseType goEase = iTween.EaseType.easeOutQuad;
+		iTween.EaseType backEase = iTween.EaseType.linear;
+
+		this.gameObject.MoveTo( enemy.transform.position ).Time( halfDuration ).EaseType(goEase).Execute();
+
+		// note: use local coordinates here to return to the target
+		// this only works if the projectiles are children of the target!!!
+		this.gameObject.MoveTo( enemy.transform.InverseTransformPoint( enemy.transform.position ) ).IsLocal(true).Time ( halfDuration ).EaseType(backEase).Delay( halfDuration ).Execute();
+
+		yield return new WaitForSeconds( halfDuration );
+		enemy.OnAttacked();
+		GameObject.Destroy( enemy.gameObject );
+		yield return new WaitForSeconds( halfDuration );
+
+
+		iTween.Stop( this.gameObject );
+		transform.position = GetOrbitStartPosition();
+
+		OrbitEnabled = true;
+	}
+
 	public Vector3 GetOrbitStartPosition()
 	{
 		return (transform.position - target.position).normalized * radius + target.position;
@@ -62,8 +94,9 @@ public class OrbitProjectile : MonoBehaviour
 		transform.RotateAround (target.position, axis, rotationDirection * speed * Time.deltaTime);
 
 		transform.eulerAngles = new Vector3(45,45,0);
-		//Vector3 desiredPosition = (transform.position - target.position).normalized * radius + target.position;
-		//transform.position = Vector3.MoveTowards(transform.position, desiredPosition, Time.deltaTime * 100.0f);
+
+		Vector3 desiredPosition = (transform.position - target.position).normalized * radius + target.position;
+		transform.position = Vector3.MoveTowards(transform.position, desiredPosition, Time.deltaTime * 0.5f);
 	}
 
 	protected void RandomProperties()
