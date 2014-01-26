@@ -286,12 +286,12 @@ public class LugusAudioTrackSettings
 	// customSettings.ApplyTo(track)
 	public void Merge(LugusAudioTrackSettings baseSettings)
 	{
-		Debug.Log ("Mergin base settings 0"); 
+		//Debug.Log ("Mergin base settings 0"); 
 		
 		if( baseSettings == null )
 			return;
 		
-		Debug.Log ("Mergin base settings");
+		//Debug.Log ("Mergin base settings");
 		
 		if( !volume_set )
 		{

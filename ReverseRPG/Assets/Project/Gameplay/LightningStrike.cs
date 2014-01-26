@@ -45,6 +45,9 @@ public class LightningStrike : MonoBehaviour
 			//this.collider.enabled = true;
 			GameObject.Destroy( effect, 5.0f );
 
+			if( Vector3.Distance(CharacterInteraction.use.transform.position, this.transform.position) < 20.0f )
+				SoundManager.use.PlaySFX( SoundManager.use.thunder );
+
 			yield return new WaitForSeconds( 0.5f );
 			//this.collider.enabled = false;
 

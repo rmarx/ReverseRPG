@@ -36,6 +36,7 @@ public class BackToMainMenuButton : MonoBehaviour
 			
 			if( LugusInput.use.down )
 			{
+				SoundManager.use.PlaySFX( SoundManager.use.continueButton );
 				Application.LoadLevel("Menu");
 			}
 		}

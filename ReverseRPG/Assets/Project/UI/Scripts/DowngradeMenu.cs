@@ -233,6 +233,8 @@ public class DowngradeMenu : LugusSingletonExisting<DowngradeMenu>
 				child.gameObject.MoveTo( child.transform.position.xAdd( 20.0f ) ).Time (1.0f).Execute();
 		}
 
+		SoundManager.use.PlaySFX( SoundManager.use.continueButton );
+
 		yield return new WaitForSeconds(1.0f);
 
 

@@ -43,11 +43,13 @@ public class HealthBar : MonoBehaviour
 	{
 		yield return new WaitForSeconds( delay );
 
-		DataRange healthRange = new DataRange(0, maxHealth);
-		DataRange scaleRange = new DataRange(0, originalScale.x);
+		float healthPercentage = health / maxHealth;
+
+		//DataRange healthRange = new DataRange(0, maxHealth);
+		//DataRange scaleRange = new DataRange(0, originalScale.x);
 		
-		float healthPercentage = healthRange.PercentageInInterval(health);
-		float newX = scaleRange.ValueFromPercentage( healthPercentage );
+		//float healthPercentage = healthRange.PercentageInInterval(health);
+		float newX = originalScale.x * healthPercentage; //scaleRange.ValueFromPercentage( healthPercentage );
 		
 		
 		//Debug.Log ("HEALTHBAR SET HEALTH " + health + " / " + maxHealth + " // " + healthPercentage + " @ " + newX );
@@ -57,7 +59,7 @@ public class HealthBar : MonoBehaviour
 
 	public void Reset( float oldMaxHealth, float maxHealth )
 	{
-
+		/*
 		DataRange healthRange = new DataRange(0, oldMaxHealth);
 		DataRange scaleRange = new DataRange(0, originalScale.x);
 		
@@ -70,6 +72,23 @@ public class HealthBar : MonoBehaviour
 		greenBar.transform.localScale = greenBar.transform.localScale.x ( newX );
 		redBar.transform.localScale = redBar.transform.localScale.x ( newX );
 
+		//originalScale = greenBar.transform.localScale;
+		*/
+
+		float healthPercentage = maxHealth / oldMaxHealth;
+		
+		//DataRange healthRange = new DataRange(0, maxHealth);
+		//DataRange scaleRange = new DataRange(0, originalScale.x);
+		
+		//float healthPercentage = healthRange.PercentageInInterval(health);
+		float newX = originalScale.x * healthPercentage; //scaleRange.ValueFromPercentage( healthPercentage );
+		
+		
+		//Debug.Log ("HEALTHBAR SET HEALTH " + health + " / " + maxHealth + " // " + healthPercentage + " @ " + newX );
+		
+		greenBar.transform.localScale = greenBar.transform.localScale.x ( newX );
+		redBar.transform.localScale = redBar.transform.localScale.x ( newX );
+		
 		originalScale = greenBar.transform.localScale;
 	}
 	

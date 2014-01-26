@@ -36,6 +36,7 @@ public class FinalButton : MonoBehaviour
 			
 			if( LugusInput.use.down )
 			{
+				SoundManager.use.PlaySFX( SoundManager.use.continueButton );
 				LugusCoroutines.use.StartRoutine( EndRoutine() );
 			}
 		}

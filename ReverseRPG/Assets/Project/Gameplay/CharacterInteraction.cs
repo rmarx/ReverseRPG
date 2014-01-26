@@ -11,7 +11,8 @@ namespace RPG
 		Fire = 1,
 		Electric = 2,
 		Melee = 3,
-		InstaKill = 4
+		InstaKill = 4,
+		ExtraHealth = 5
 	}
 }
 
@@ -37,6 +38,8 @@ public class CharacterInteraction : LugusSingletonExisting<CharacterInteraction>
 
 	public void ChangeHealth(float amount, EnemyTarget enemy)
 	{
+		SoundManager.use.PlaySFX( SoundManager.use.playerHit );
+
 		health += amount;
 		float duration = 0.8f;
 
@@ -58,13 +61,21 @@ public class CharacterInteraction : LugusSingletonExisting<CharacterInteraction>
 				color = Color.blue;
 			else if( enemy.damageType == RPG.DamageType.Fire )
 				color = Color.red;
-			else
+			else if( enemy.damageType == RPG.DamageType.Electric )
 				color = Color.yellow;
+			else if( enemy.damageType == RPG.DamageType.InstaKill )
+				color = Color.white;
+			else if( enemy.damageType == RPG.DamageType.ExtraHealth )
+				color = Color.green;
 		}
 
 		color = color.a (0.7f);
 
-		scoreText.GetComponent<TextMesh>().text = "" + amount;
+		if( amount < 0 )
+			scoreText.GetComponent<TextMesh>().text = "" + amount;
+		else
+			scoreText.GetComponent<TextMesh>().text = "+" + amount;
+
 		scoreText.GetComponent<TextMesh>().color = color;
 
 		scoreText.transform.localScale = Vector3.zero;
@@ -85,6 +96,10 @@ public class CharacterInteraction : LugusSingletonExisting<CharacterInteraction>
 	public IEnumerator DieRoutine()
 	{
 		timeCounting = false;
+
+		
+		SoundManager.use.footLoop.Stop();
+		SoundManager.use.PlaySFX( SoundManager.use.death );
 
 		Debug.LogError("I'M MELTING!");
 
@@ -173,8 +188,15 @@ public class CharacterInteraction : LugusSingletonExisting<CharacterInteraction>
 		if( shieldActive )
 			damage /= 2.0f;
 
+		if( enemy.damageType != RPG.DamageType.ExtraHealth )
+			damage *= -1.0f;
+		else
+		{
+			damage = this.maxHealth / 10.0f;
+			GameObject.Destroy( enemy.gameObject );
+		}
 
-		ChangeHealth( -1.0f * damage, enemy );
+		ChangeHealth( damage, enemy );
 	}
 	
 	public void SetupGlobal()
@@ -191,6 +213,8 @@ public class CharacterInteraction : LugusSingletonExisting<CharacterInteraction>
 
 		startTime = Time.time;
 		timeCounting = true;
+
+		SoundManager.use.footLoop.Play();
 	}
 	
 	protected void Awake()

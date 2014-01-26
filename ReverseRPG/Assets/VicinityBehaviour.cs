@@ -59,9 +59,9 @@ public class VicinityBehaviour : MonoBehaviour {
 		//Action when player is close
 		if (mainCharacterIsClose && !startedRunning) 
 		{
-			Debug.Log ("Badass is close!");
+			//Debug.Log ("Badass is close!");
 			//Run to the nearest TeddybearHole object
-			Debug.Log ("length of holes to run to " + teddyBearHolesChildren.Length);
+			//Debug.Log ("length of holes to run to " + teddyBearHolesChildren.Length);
 			foreach (Transform hole in teddyBearHolesChildren) 
 			{
 				if( hole == null )
@@ -80,7 +80,7 @@ public class VicinityBehaviour : MonoBehaviour {
 			{
 				startedRunning = true;
 				RunToHole (closestHole);
-				Debug.Log ("Running to closest hole aaaah!  " + closestHole.name);
+				//Debug.Log ("Running to closest hole aaaah!  " + closestHole.name);
 			}
 		}
 	}
