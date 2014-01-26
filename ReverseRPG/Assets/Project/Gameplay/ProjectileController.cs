@@ -20,13 +20,18 @@ public class ProjectileController : MonoBehaviour
 
 	protected IEnumerator TargetingRoutine()
 	{
-		EnemyTarget[] enemies = GameObject.FindObjectsOfType<EnemyTarget>();
 
 		while( true )
 		{
+			
+			EnemyTarget[] enemies = GameObject.FindObjectsOfType<EnemyTarget>();
+
 			foreach( EnemyTarget enemy in enemies )
 			{
 				if( enemy.markedForDestruction )
+					continue;
+
+				if( enemy.damageType != RPG.DamageType.Melee )
 					continue;
 
 				OrbitProjectile projectile = null;
@@ -36,6 +41,9 @@ public class ProjectileController : MonoBehaviour
 				{
 					foreach( OrbitProjectile candidate in projectiles )
 					{
+						if( candidate == null )
+							continue;
+
 						// find first projectile that's not attacking already
 						if( candidate.OrbitEnabled )
 						{
@@ -47,14 +55,14 @@ public class ProjectileController : MonoBehaviour
 					{
 						enemy.markedForDestruction = true;
 
-						projectile.Attack(enemy, 1.0f);
+						projectile.Attack(enemy, 0.8f);
 						//projectile.gameObject.MoveTo( projectile.GetOrbitStartPosition() ).Time( 0.5f ).Delay(0.5f).Execute();
 					}
 
 				}
 			}
 
-			yield return new WaitForSeconds(0.1f);
+			yield return new WaitForSeconds(0.3f);
 		}
 	}
 	
@@ -62,7 +70,10 @@ public class ProjectileController : MonoBehaviour
 	{
 		// lookup references to objects / scripts outside of this script
 
-		LugusCoroutines.use.StartRoutine( TargetingRoutine() );
+		if( !LugusConfig.use.User.GetBool("downgrade.support.weapons", false) )
+		{
+			LugusCoroutines.use.StartRoutine( TargetingRoutine() );
+		}
 	}
 	
 	protected void Awake()

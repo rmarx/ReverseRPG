@@ -10,13 +10,14 @@ public class IsometricFollowCamera : MonoBehaviour
 
 	public void SetupLocal()
 	{
-		// assign variables that have to do with this class only
-		originalOffset = target.transform.position - this.transform.position;
-
 		if (target == null) 
 		{
 			target = GameObject.Find ("Character");
 		}
+
+		// assign variables that have to do with this class only
+		originalOffset = target.transform.position - this.transform.position;
+
 	}
 	
 	public void SetupGlobal()

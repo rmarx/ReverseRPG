@@ -10,6 +10,11 @@ public class IsometricMovement : MonoBehaviour
 	public float minX = -20.0f;
 	public float maxX = 20.0f;
 
+	public float minZ = -30.0f;
+
+	public bool moveEnabled = false;
+	public bool freeMove = false;
+
 	public void SetupLocal()
 	{
 		// assign variables that have to do with this class only
@@ -18,6 +23,27 @@ public class IsometricMovement : MonoBehaviour
 	public void SetupGlobal()
 	{
 		// lookup references to objects / scripts outside of this script
+
+		//LugusCoroutines.use.StartRoutine( StartMoveRoutine() );
+		
+		Animator[] anims = transform.GetComponentsInChildren<Animator>();
+		foreach( Animator anim in anims )
+		{
+			if( anim != null )
+				anim.enabled = false;
+		}
+	}
+
+	public void StartMoving()
+	{
+		Animator[] anims = transform.GetComponentsInChildren<Animator>(); 
+		foreach( Animator anim in anims )
+		{
+			if( anim != null )
+				anim.enabled = true;
+		}
+
+		moveEnabled = true;
 	}
 	
 	protected void Awake()
@@ -32,7 +58,8 @@ public class IsometricMovement : MonoBehaviour
 	
 	protected void Update () 
 	{
-		Move ();
+		if( moveEnabled )
+			Move ();
 	}
 
 	protected void Move()
@@ -41,6 +68,21 @@ public class IsometricMovement : MonoBehaviour
 		
 		float xMove = Input.GetAxis("Horizontal");
 		float zMove = 1.0f; //Input.GetAxis("Vertical");
+
+		if( freeMove )
+		{
+			zMove = Input.GetAxis("Vertical");
+			
+			Animator anim = transform.GetComponentInChildren<Animator>();
+			if( zMove == 0.0f && xMove == 0.0f )
+			{
+				anim.enabled = false;
+			}
+			else
+			{
+				anim.enabled = true;
+			}
+		}
 
 		Move ( xMove, zMove );
 
@@ -55,6 +97,12 @@ public class IsometricMovement : MonoBehaviour
 		{
 			transform.position = originalPosition.x ( maxX );
 			Move ( 0.0f, 1.0f );
+		}
+
+		if( transform.position.z < minZ )
+		{
+			transform.position = originalPosition.z( minZ );
+			Move ( xMove, 0.0f );
 		}
 	}
 	
