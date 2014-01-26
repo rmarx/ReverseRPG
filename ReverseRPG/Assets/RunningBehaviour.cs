@@ -6,7 +6,9 @@ public class RunningBehaviour : MonoBehaviour {
 	public GameObject mainCharacter = null;
 	public GameObject runningTeddyBear = null;
 	public bool mainCharacterIsClose = false;
-	public bool startedRunning = false;	
+	public bool startedRunning = false;
+
+	public float runSpeed = 30.0f;
 	
 	public void SetupLocal()
 	{
@@ -19,6 +21,12 @@ public class RunningBehaviour : MonoBehaviour {
 		{
 			mainCharacter = GameObject.Find ("Character");
 		}
+		if (runningTeddyBear == null) 
+		{
+			runningTeddyBear = GameObject.Find ("RunningTeddybear");
+		}
+		Animator anim = transform.GetComponentInChildren<Animator> ();
+		anim.enabled = false;
 	}
 	
 	protected void Awake()
@@ -55,8 +63,17 @@ public class RunningBehaviour : MonoBehaviour {
 	
 	protected void startRunningAway() 
 	{
+		Animator anim = transform.GetComponentInChildren<Animator> ();
+		anim.enabled = true;
+
 		//Runs away from target by half of the mainCharacter's speed
 		Vector3 relativePos = this.transform.position - mainCharacter.transform.position;
-		transform.Translate (relativePos.normalized.x * 40.0f * Time.deltaTime, 0, relativePos.normalized.z * 40.0f * Time.deltaTime);	
+		if(relativePos.x < 0)
+		{
+			relativePos.x *= -1;
+		
+		}
+		Debug.LogWarning (" RUNNER " + relativePos.normalized + " // " + runSpeed);
+		transform.Translate (relativePos.normalized.x * runSpeed * Time.deltaTime, 0, relativePos.normalized.z * runSpeed * Time.deltaTime);	
 	}
 }

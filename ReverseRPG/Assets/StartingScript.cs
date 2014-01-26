@@ -6,28 +6,28 @@ public class StartingScript : MonoBehaviour {
 	public GameObject runningTeddyBear;
 	public GameObject teddyBearHole;
 	public GameObject teddyBearHolesContainer;
-	public GameObject section2;
 
 	public int numberOfTeddyBears = 5;
 	public int numberOfRunningTeddyBears = 5;
 	public int numberOfTeddyBearHoles = 5;
 
-	public float xMultiplierOfTeddyBear = 1.0f;
-	public float yMultiplierOfTeddyBear = 0.0f;
-	public float zMultiplierOfTeddyBear = 5.0f;
-	public float xMultiplierOfTeddyBearHole = 1.0f;
-	public float yMultiplierOfTeddyBearHole = 0.0f;
-	public float zMultiplierOfTeddyBearHole = 10.0f;
-
 	// Use this for initialization
 	void Awake () {
+		if (teddyBear == null) 
+		{
+			teddyBear = GameObject.Find ("Teddybear");
+		}
+		if (runningTeddyBear == null) 
+		{
+			runningTeddyBear = GameObject.Find ("RunningTeddybear");
+		}
+		if (teddyBearHole == null) 
+		{
+			teddyBearHole = GameObject.Find ("TeddybearHole");
+		}
 		if (teddyBearHolesContainer == null) 
 		{
 			teddyBearHolesContainer = GameObject.Find ("TeddybearHolesContainer");
-		}
-		if (section2 == null) 
-		{
-			section2 = GameObject.Find ("Section2");
 		}
 
 		//instantiate X Teddybears
@@ -36,7 +36,7 @@ public class StartingScript : MonoBehaviour {
 		 	Vector3 position = new Vector3(Random.Range(-13, 13), 0, Random.Range(-13, 13));
 			Vector3 relativePos = new Vector3(teddyBear.transform.position.x + position.x, 0, teddyBear.transform.position.z + position.z);
 		 	GameObject tempTeddybear = (GameObject) GameObject.Instantiate (teddyBear, relativePos, Quaternion.identity);	 	
-		 	tempTeddybear.transform.parent = section2.transform;
+		 	tempTeddybear.transform.parent = this.transform.parent;
 		}
 		GameObject.Destroy (teddyBear);
 		//instantiate X Running Teddybears
@@ -45,7 +45,7 @@ public class StartingScript : MonoBehaviour {
 			Vector3 position = new Vector3(Random.Range(-13, 13), 0, Random.Range(-13, 13));
 			Vector3 relativePos = new Vector3(runningTeddyBear.transform.position.x + position.x, 0, runningTeddyBear.transform.position.z + position.z);
 			GameObject tempTeddybear = (GameObject) GameObject.Instantiate (runningTeddyBear, relativePos, Quaternion.identity);	 	
-			tempTeddybear.transform.parent = section2.transform;
+			tempTeddybear.transform.parent = this.transform.parent;
 		}
 		GameObject.Destroy (runningTeddyBear);
 		for (int i = 0; i < numberOfTeddyBearHoles; i++) 
