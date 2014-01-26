@@ -10,6 +10,8 @@ public class IsometricMovement : MonoBehaviour
 	public float minX = -20.0f;
 	public float maxX = 20.0f;
 
+	public bool moveEnabled = false;
+
 	public void SetupLocal()
 	{
 		// assign variables that have to do with this class only
@@ -18,6 +20,20 @@ public class IsometricMovement : MonoBehaviour
 	public void SetupGlobal()
 	{
 		// lookup references to objects / scripts outside of this script
+
+		LugusCoroutines.use.StartRoutine( StartMoveRoutine() );
+	}
+
+	protected IEnumerator StartMoveRoutine()
+	{
+		Animator anim = transform.GetComponentInChildren<Animator>();
+		anim.enabled = false;
+
+		yield return new WaitForSeconds(1.0f);
+		
+		anim.enabled = true;
+
+		moveEnabled = true;
 	}
 	
 	protected void Awake()
@@ -32,7 +48,8 @@ public class IsometricMovement : MonoBehaviour
 	
 	protected void Update () 
 	{
-		Move ();
+		if( moveEnabled )
+			Move ();
 	}
 
 	protected void Move()

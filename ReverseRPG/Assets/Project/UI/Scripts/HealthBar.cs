@@ -43,6 +43,23 @@ public class HealthBar : MonoBehaviour
 		greenBar.transform.localScale = greenBar.transform.localScale.x ( newX );
 	}
 
+	public void Reset( float oldMaxHealth, float maxHealth )
+	{
+
+		DataRange healthRange = new DataRange(0, oldMaxHealth);
+		DataRange scaleRange = new DataRange(0, originalScale.x);
+		
+		float healthPercentage = healthRange.PercentageInInterval(maxHealth);
+		float newX = scaleRange.ValueFromPercentage( healthPercentage );
+		
+		
+		Debug.Log ("HEALTHBAR RESET HEALTH " + maxHealth + " / " + oldMaxHealth + " // " + healthPercentage + " @ " + newX );
+		
+		greenBar.transform.localScale = greenBar.transform.localScale.x ( newX );
+		redBar.transform.localScale = redBar.transform.localScale.x ( newX );
+
+		originalScale = greenBar.transform.localScale;
+	}
 	
 	public void SetupGlobal()
 	{

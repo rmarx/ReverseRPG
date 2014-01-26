@@ -2,19 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EffectsManager : LugusSingletonExisting<EffectsManager> 
+public class LightningField : MonoBehaviour 
 {
-	public GameObject explosion1 = null;
-
-	public GameObject Spawn(GameObject effect, Vector3 position)
-	{
-		//Debug.Log ("Spawning " + effect.name + " @ " + position);
-		GameObject effectNew = (GameObject) GameObject.Instantiate( effect );
-		effectNew.transform.position = position;
-
-		return effectNew;
-	}
-
 	public void SetupLocal()
 	{
 		// assign variables that have to do with this class only

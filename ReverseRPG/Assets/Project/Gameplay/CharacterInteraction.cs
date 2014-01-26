@@ -14,7 +14,7 @@ namespace RPG
 	}
 }
 
-public class CharacterInteraction : MonoBehaviour 
+public class CharacterInteraction : LugusSingletonExisting<CharacterInteraction> 
 {
 	public float health = 100000.0f;
 	public float maxHealth = 100000.0f;
@@ -23,6 +23,16 @@ public class CharacterInteraction : MonoBehaviour
 	public OrbitProjectile[] projectiles;
 
 	public GameObject scoreTextPrefab = null;
+
+	public void SetMaxHealth(float newMaxHealth)
+	{
+		float oldMaxHealth = maxHealth;
+
+		maxHealth = newMaxHealth;
+		health = Mathf.Clamp( health, 0, maxHealth);
+
+		UIController.use.healthBar.Reset( oldMaxHealth, maxHealth );
+	}
 
 	public void ChangeHealth(float amount, EnemyTarget enemy)
 	{
@@ -74,12 +84,12 @@ public class CharacterInteraction : MonoBehaviour
 		// assign variables that have to do with this class only
 		if( forceFields == null || forceFields.Length == 0 )
 		{
-			forceFields = transform.GetComponentsInChildren<ForceField>();
+			FetchForceFields();
 		}
 
 		if ( projectiles == null || projectiles.Length == 0 )
 		{
-			projectiles = transform.GetComponentsInChildren<OrbitProjectile>();
+			FetchProjectiles();
 		}
 		
 		if( scoreTextPrefab == null )
@@ -93,12 +103,23 @@ public class CharacterInteraction : MonoBehaviour
 		}
 	}
 
+	public void FetchForceFields()
+	{
+		
+		forceFields = transform.GetComponentsInChildren<ForceField>();
+	}
+
+	public void FetchProjectiles()
+	{
+		projectiles = transform.GetComponentsInChildren<OrbitProjectile>();
+	}
+
 	public void OnTriggerEnter(Collider collider)
 	{
 
 		EnemyTarget enemy = collider.GetComponent<EnemyTarget>();
 
-		if( enemy == null )
+		if( enemy == null || enemy.enabled == false )
 			return;
 
 		enemy.OnInteractionDone(); 

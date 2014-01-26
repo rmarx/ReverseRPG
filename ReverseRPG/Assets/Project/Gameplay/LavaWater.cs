@@ -2,17 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EffectsManager : LugusSingletonExisting<EffectsManager> 
+public class LavaWater : MonoBehaviour 
 {
-	public GameObject explosion1 = null;
+	public Material lavaMaterial = null;
 
-	public GameObject Spawn(GameObject effect, Vector3 position)
+	public void Switch()
 	{
-		//Debug.Log ("Spawning " + effect.name + " @ " + position);
-		GameObject effectNew = (GameObject) GameObject.Instantiate( effect );
-		effectNew.transform.position = position;
+		this.renderer.material = lavaMaterial;
 
-		return effectNew;
+		this.GetComponent<EnemyTarget>().enabled = true;
 	}
 
 	public void SetupLocal()

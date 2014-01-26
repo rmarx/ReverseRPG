@@ -9,4 +9,10 @@
 	<Robin>1234</Robin>
 	<Marx>Robin</Marx>
 	<C-MINE>100</C-MINE>
+	<downgrade.fire.shield>True</downgrade.fire.shield>
+	<downgrade.support.weapons>False</downgrade.support.weapons>
+	<downgrade.fire.lava>True</downgrade.fire.lava>
+	<downgrade.support.health>True</downgrade.support.health>
+	<downgrade.damage.shield>True</downgrade.damage.shield>
+	<downgrade.electric.shield>True</downgrade.electric.shield>
 </Config>
