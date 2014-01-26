@@ -9,6 +9,9 @@ public class HealthBar : MonoBehaviour
 
 	public Vector3 originalScale = Vector3.zero;
 
+	public TextMesh timer = null;
+	public TextMesh previousTimer = null;
+
 	public void SetupLocal()
 	{
 		// assign variables that have to do with this class only
@@ -20,6 +23,15 @@ public class HealthBar : MonoBehaviour
 
 		originalScale = greenBar.transform.localScale;
 		redBar.transform.localScale = originalScale;
+
+		timer.text = "";
+		float prevTime = LugusConfig.use.User.GetFloat("level.previousTime", 0.0f);
+		if( prevTime != 0.0f )
+		{
+			previousTimer.text = "Previous: " + prevTime + "s";
+		}
+		else
+			previousTimer.text = "";
 	}
 
 	public void SetHealth(float health, float maxHealth, float delay)
@@ -79,5 +91,15 @@ public class HealthBar : MonoBehaviour
 	protected void Update () 
 	{
 		redBar.transform.localScale = Vector3.Lerp( redBar.transform.localScale, greenBar.transform.localScale, Time.deltaTime * 5.0f );
+
+		if( CharacterInteraction.use.timeCounting )
+		{
+			float time = (Time.time - CharacterInteraction.use.startTime);
+			time *= 1000.0f;
+			int t = (int) time;
+			time = ( (float) t ) / 1000.0f;
+
+			timer.text = "" + time + "s";
+		}
 	}
 }

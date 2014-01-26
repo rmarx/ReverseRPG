@@ -16,9 +16,20 @@ public class DowngradeMenu : LugusSingletonExisting<DowngradeMenu>
 
 	public void Show(float levelTime)
 	{
+		if( LevelBuilder.use.downgradeCount == 8 )
+		{
+			transform.FindChild("FinalButton").gameObject.SetActive(true);
+		}
+
+		if( LevelBuilder.use.downgradeCount == 9 )
+		{
+			transform.FindChild("EndScreen").gameObject.SetActive(true);
+		}
+
 		transform.FindChild("LevelDescription").GetComponent<TextMesh>().text = "You have succeeded in killing yourself in " + levelTime + " seconds.\nNow pick a new downgrade and die faster next time!";
 
 		gameObject.MoveTo( this.transform.localPosition.y(0.0f) ).IsLocal(true).Time(2.0f).EaseType(iTween.EaseType.easeOutBack).Execute();
+
 	}
 
 	public void ChooseDowngrade(DowngradeButton downgrade)

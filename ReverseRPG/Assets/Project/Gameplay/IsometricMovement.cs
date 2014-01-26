@@ -24,20 +24,19 @@ public class IsometricMovement : MonoBehaviour
 	{
 		// lookup references to objects / scripts outside of this script
 
-		LugusCoroutines.use.StartRoutine( StartMoveRoutine() );
-	}
-
-	protected IEnumerator StartMoveRoutine()
-	{
+		//LugusCoroutines.use.StartRoutine( StartMoveRoutine() );
+		
 		Animator[] anims = transform.GetComponentsInChildren<Animator>();
 		foreach( Animator anim in anims )
 		{
 			if( anim != null )
 				anim.enabled = false;
 		}
+	}
 
-		yield return new WaitForSeconds(1.0f);
-		
+	public void StartMoving()
+	{
+		Animator[] anims = transform.GetComponentsInChildren<Animator>(); 
 		foreach( Animator anim in anims )
 		{
 			if( anim != null )

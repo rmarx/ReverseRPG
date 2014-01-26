@@ -57,8 +57,11 @@ public class OrbitProjectile : MonoBehaviour
 		this.gameObject.MoveTo( target.transform.InverseTransformPoint( target.transform.position ) ).IsLocal(true).Time ( halfDuration ).EaseType(backEase).Delay( halfDuration ).Execute();
 
 		yield return new WaitForSeconds( halfDuration );
-		enemy.OnAttacked();
-		GameObject.Destroy( enemy.gameObject );
+		if( enemy != null )
+		{
+			enemy.OnAttacked();
+			GameObject.Destroy( enemy.gameObject );
+		}
 		yield return new WaitForSeconds( halfDuration );
 
 

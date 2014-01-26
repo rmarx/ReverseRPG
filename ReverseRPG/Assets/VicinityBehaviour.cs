@@ -64,6 +64,9 @@ public class VicinityBehaviour : MonoBehaviour {
 			Debug.Log ("length of holes to run to " + teddyBearHolesChildren.Length);
 			foreach (Transform hole in teddyBearHolesChildren) 
 			{
+				if( hole == null )
+					continue;
+
 				if (hole == teddyBearHolesParent.transform || hole == null) 
 				{
 					continue;
@@ -95,7 +98,10 @@ public class VicinityBehaviour : MonoBehaviour {
 
 		yield return new WaitForSeconds( 0.5f );
 
-		GameObject.Destroy (this.gameObject);
-		EffectsManager.use.Spawn (EffectsManager.use.magicPoof, new Vector3( hole.position.x, hole.position.y+5.0f, hole.position.z));
+		if( this == null || this.gameObject == null )
+			yield break;
+
+			GameObject.Destroy (this.gameObject);
+			EffectsManager.use.Spawn (EffectsManager.use.magicPoof, new Vector3( hole.position.x, hole.position.y+5.0f, hole.position.z));
 	}
 }

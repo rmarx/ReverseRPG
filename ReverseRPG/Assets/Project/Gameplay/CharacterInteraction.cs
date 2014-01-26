@@ -10,7 +10,8 @@ namespace RPG
 
 		Fire = 1,
 		Electric = 2,
-		Melee = 3
+		Melee = 3,
+		InstaKill = 4
 	}
 }
 
@@ -38,6 +39,9 @@ public class CharacterInteraction : LugusSingletonExisting<CharacterInteraction>
 	{
 		health += amount;
 		float duration = 0.8f;
+
+		if( health <= 0.0f )
+			LugusCoroutines.use.StartRoutine( DieRoutine () );
 
 		GameObject scoreText = (GameObject) GameObject.Instantiate( scoreTextPrefab );
 
@@ -76,6 +80,30 @@ public class CharacterInteraction : LugusSingletonExisting<CharacterInteraction>
 		if( sound != null )
 			LugusAudio.use.SFX().Play( sound );
 		*/
+	}
+
+	public IEnumerator DieRoutine()
+	{
+		timeCounting = false;
+
+		Debug.LogError("I'M MELTING!");
+
+		this.GetComponent<IsometricMovement>().moveEnabled = false;
+		this.GetComponent<ProjectileController>().enabled = false;
+
+		foreach( Transform child in this.transform )
+		{
+			child.gameObject.SetActive( false );
+		}
+
+		EffectsManager.use.Spawn( EffectsManager.use.death, this.transform.position );
+
+		float finalTime = Time.time - startTime;
+		LugusConfig.use.User.SetFloat( "level.previousTime", finalTime, true );
+
+		yield return new WaitForSeconds(2.0f);
+
+		DowngradeMenu.use.Show( finalTime );
 	}
 
 
@@ -136,11 +164,15 @@ public class CharacterInteraction : LugusSingletonExisting<CharacterInteraction>
 			}
 		}
 
-		float damage = maxHealth / 10.0f;
-		if( shieldActive )
-			damage = 0;
+		float damage = 0.0f;
+		if( enemy.damage.from == enemy.damage.to && enemy.damage.from == 0 )
+			damage = Random.Range( 1000, 10000 );
+		else
+			damage = enemy.damage.Random();
 
-		damage = Random.Range( 1000, 10000 );
+		if( shieldActive )
+			damage /= 2.0f;
+
 
 		ChangeHealth( -1.0f * damage, enemy );
 	}
@@ -148,6 +180,17 @@ public class CharacterInteraction : LugusSingletonExisting<CharacterInteraction>
 	public void SetupGlobal()
 	{
 		// lookup references to objects / scripts outside of this script
+		LugusCoroutines.use.StartRoutine( StartDelayRoutine() );
+	}
+
+	protected IEnumerator StartDelayRoutine()
+	{
+		yield return new WaitForSeconds(1.0f);
+
+		GetComponent<IsometricMovement>().StartMoving();
+
+		startTime = Time.time;
+		timeCounting = true;
 	}
 	
 	protected void Awake()
@@ -159,9 +202,12 @@ public class CharacterInteraction : LugusSingletonExisting<CharacterInteraction>
 	{
 		SetupGlobal();
 	}
+
+	public float startTime = 0.0f;
+	public bool timeCounting = false;
 	
 	protected void Update () 
 	{
-	
+		
 	}
 }

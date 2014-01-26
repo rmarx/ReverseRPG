@@ -41,7 +41,7 @@ public class AttackBehaviour : MonoBehaviour {
 		{
 			idle.SetActive(false);
 			running.SetActive(true);
-			Debug.Log("running to mainchar");
+			//Debug.Log("running to mainchar");
 			//Run to the maincharacter
 			Vector3 relativePos = mainCharacter.transform.position - this.transform.position;
 			transform.Translate (relativePos.normalized.x * runSpeed * Time.deltaTime, 0, relativePos.normalized.z * runSpeed * Time.deltaTime);

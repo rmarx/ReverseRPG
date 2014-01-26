@@ -55,7 +55,7 @@ public class ProjectileController : MonoBehaviour
 					{
 						enemy.markedForDestruction = true;
 
-						projectile.Attack(enemy, 1.0f);
+						projectile.Attack(enemy, 0.8f);
 						//projectile.gameObject.MoveTo( projectile.GetOrbitStartPosition() ).Time( 0.5f ).Delay(0.5f).Execute();
 					}
 

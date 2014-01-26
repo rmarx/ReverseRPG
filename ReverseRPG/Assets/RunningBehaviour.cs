@@ -73,7 +73,7 @@ public class RunningBehaviour : MonoBehaviour {
 			relativePos.x *= -1;
 		
 		}
-		Debug.LogWarning (" RUNNER " + relativePos.normalized + " // " + runSpeed);
+//		Debug.LogWarning (" RUNNER " + relativePos.normalized + " // " + runSpeed);
 		transform.Translate (relativePos.normalized.x * runSpeed * Time.deltaTime, 0, relativePos.normalized.z * runSpeed * Time.deltaTime);	
 	}
 }

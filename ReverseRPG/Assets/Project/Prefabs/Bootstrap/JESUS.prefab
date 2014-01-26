@@ -40,6 +40,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion1: {fileID: 100008, guid: c6f0dc0eae58dbe4da95e62a8373ad23, type: 2}
+  poof: {fileID: 100000, guid: 3156817f64ec68948ad6bb26569b9ef5, type: 2}
+  magicPoof: {fileID: 100018, guid: 51a86f32efb25674485dd9c5b35d8695, type: 2}
+  slashWithText: {fileID: 100002, guid: 43d28f815894558468fd96fe627bb31c, type: 2}
+  death: {fileID: 100006, guid: 2a474af3f4c27be4e9bdce39cfe4315d, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -90,7 +90,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .600000024, z: 0}
+  m_LocalPosition: {x: 0, y: 4.80000019, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400006}
@@ -112,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400004}
@@ -175,7 +175,7 @@ ParticleSystem:
   m_GameObject: {fileID: 100000}
   lengthInSec: 2
   startDelay: 0
-  speed: 1
+  speed: .5
   randomSeed: 0
   looping: 0
   prewarm: 0
@@ -324,7 +324,7 @@ ParticleSystem:
         rgba: 2355941802
       minMaxState: 0
     startSize:
-      scalar: .850000024
+      scalar: 6.80000019
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1202,7 +1202,7 @@ ParticleSystem:
   m_GameObject: {fileID: 100002}
   lengthInSec: 1
   startDelay: .200000003
-  speed: 1
+  speed: .5
   randomSeed: 0
   looping: 0
   prewarm: 0
@@ -1351,7 +1351,7 @@ ParticleSystem:
         rgba: 2690444479
       minMaxState: 0
     startSize:
-      scalar: .800000012
+      scalar: 6.4000001
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1677,7 +1677,7 @@ ParticleSystem:
   VelocityModule:
     enabled: 1
     x:
-      scalar: 1
+      scalar: 8
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1720,7 +1720,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 1
     y:
-      scalar: 1
+      scalar: 8
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1748,7 +1748,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 1
     z:
-      scalar: 1
+      scalar: 8
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1827,7 +1827,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     y:
-      scalar: 10
+      scalar: 80
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2239,7 +2239,7 @@ ParticleSystem:
   m_GameObject: {fileID: 100004}
   lengthInSec: 2
   startDelay: 0
-  speed: 1
+  speed: .5
   randomSeed: 0
   looping: 0
   prewarm: 0
@@ -2388,7 +2388,7 @@ ParticleSystem:
         rgba: 2691486122
       minMaxState: 0
     startSize:
-      scalar: .850000024
+      scalar: 6.80000019
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3266,7 +3266,7 @@ ParticleSystem:
   m_GameObject: {fileID: 100006}
   lengthInSec: 2
   startDelay: 0
-  speed: 1
+  speed: .5
   randomSeed: 0
   looping: 0
   prewarm: 0
@@ -3415,7 +3415,7 @@ ParticleSystem:
         rgba: 2153758370
       minMaxState: 0
     startSize:
-      scalar: .300000012
+      scalar: 2.4000001
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3467,12 +3467,12 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     type: 0
-    radius: .00999999978
+    radius: .0799999982
     angle: 0
     length: 5
-    boxX: 1
-    boxY: 1
-    boxZ: 1
+    boxX: 8
+    boxY: 8
+    boxZ: 8
     placementMode: 0
     m_Mesh: {fileID: 0}
     randomDirection: 0
@@ -3798,7 +3798,7 @@ ParticleSystem:
   ForceModule:
     enabled: 1
     x:
-      scalar: .00100000005
+      scalar: .00800000038
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3831,7 +3831,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     y:
-      scalar: .00100000005
+      scalar: .00800000038
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3864,7 +3864,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     z:
-      scalar: .00100000005
+      scalar: .00800000038
       maxCurve:
         serializedVersion: 2
         m_Curve:

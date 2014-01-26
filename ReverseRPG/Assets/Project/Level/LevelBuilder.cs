@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class LevelBuilder : MonoBehaviour 
+public class LevelBuilder : LugusSingletonExisting<LevelBuilder> 
 {
 	public Sprite[] treeSpritesGood;
 	public Sprite[] treeSpritesEvil;
+
+	public int downgradeCount = 0;
 
 	public void SetupLocal()
 	{
@@ -19,7 +21,7 @@ public class LevelBuilder : MonoBehaviour
 	{
 		// lookup references to objects / scripts outside of this script
 
-		int downgradeCount = 0;
+		//int downgradeCount = 0;
 
 		if( LugusConfig.use.User.GetBool("downgrade.fire.shield", false) )
 		{
@@ -135,28 +137,36 @@ public class LevelBuilder : MonoBehaviour
 
 		if( LugusConfig.use.User.GetBool("downgrade.damage.grizzly", false) )
 		{
-			// TODO:!!!
-			
+			TeddyGrizzlies[] teddies = GameObject.FindObjectsOfType<TeddyGrizzlies>();
+			foreach( TeddyGrizzlies tg in teddies )
+			{
+				tg.grizzlies.SetActive(true);
+				tg.teddys.SetActive(false);
+				GameObject.Destroy( tg.teddys.gameObject );
+			}
+
 			++downgradeCount;
 		}
 
 		if( LugusConfig.use.User.GetBool("downgrade.ending.freemove", false) )
 		{
 			CharacterInteraction.use.GetComponent<IsometricMovement>().freeMove = true;
+
+			++downgradeCount;
 		}
 
 		ChangeWorld( downgradeCount );
 	}
 
-	protected void ChangeWorld(int downgradeCount )
+	protected void ChangeWorld(int downgradeCounter )
 	{
 		// 4 = world chagne
 		// 6 = slave // mss eerder vanaf health downgrade?
 		// 8 = kleinere slave?
 
-		Debug.Log ("Changing world " + downgradeCount);
+		Debug.Log ("Changing world " + downgradeCounter);
 
-		if(  downgradeCount < 6 )
+		if(  downgradeCounter < 6 )
 		{
 			//Debug.Log ("Shrinking boss");
 
@@ -172,7 +182,7 @@ public class LevelBuilder : MonoBehaviour
 		GameObject[] ground = GameObject.FindGameObjectsWithTag ("Ground");
 		CloudBobbing[] clouds = GameObject.FindObjectsOfType<CloudBobbing>();
 
-		if( downgradeCount > 2 )
+		if( downgradeCounter > 2 )
 		{
 			foreach( GameObject tree in trees )
 			{
@@ -189,13 +199,13 @@ public class LevelBuilder : MonoBehaviour
 
 		Color groundColor = Color.white;
 		Color cloudColor = Color.white;
-		if( downgradeCount < 2 )
+		if( downgradeCounter < 2 )
 		{
 			groundColor = new Color(255 / 255.0f, 150 / 255.0f, 255 / 226.0f);
 			cloudColor = new Color(214 / 255.0f, 245 / 255.0f, 255 / 255.0f);
 
 		}
-		else if( downgradeCount >= 6 )
+		else if( downgradeCounter >= 6 )
 		{
 			groundColor = new Color(126 / 255.0f, 2 / 255.0f, 2 / 255.0f);
 			cloudColor = Color.black;
@@ -213,7 +223,7 @@ public class LevelBuilder : MonoBehaviour
 		}
 
 
-		if( downgradeCount >= 6 )
+		if( downgradeCounter >= 6 )
 		{
 			Transform boss = CharacterInteraction.use.transform.FindChild("AnimationBoss");
 			GameObject.Destroy( boss.gameObject );
@@ -236,6 +246,9 @@ public class LevelBuilder : MonoBehaviour
 	{
 		if( LugusInput.use.KeyDown(KeyCode.M) )
 			DowngradeMenu.use.Show( 25 );
+		
+		if( LugusInput.use.KeyDown(KeyCode.Escape) )
+			Application.LoadLevel("Menu");
 	}
 
 	public void OnGUI()

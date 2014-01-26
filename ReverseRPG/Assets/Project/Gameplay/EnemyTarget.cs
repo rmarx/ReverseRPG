@@ -8,6 +8,8 @@ public class EnemyTarget : MonoBehaviour
 
 	public bool markedForDestruction = false;
 
+	public DataRange damage;
+
 	public void OnAttacked()
 	{
 		EffectsManager.use.Spawn( EffectsManager.use.explosion1, this.transform.position );
