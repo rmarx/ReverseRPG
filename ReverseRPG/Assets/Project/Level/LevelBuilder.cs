@@ -160,6 +160,8 @@ public class LevelBuilder : LugusSingletonExisting<LevelBuilder>
 
 	protected void ChangeWorld(int downgradeCounter )
 	{
+		SoundManager.use.LoadForProgress( downgradeCounter );
+
 		// 4 = world chagne
 		// 6 = slave // mss eerder vanaf health downgrade?
 		// 8 = kleinere slave?

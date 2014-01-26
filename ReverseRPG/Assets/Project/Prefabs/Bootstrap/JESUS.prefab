@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: JESUS
   m_TagString: Untagged
@@ -55,6 +56,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e02eceda7015143b5d82c9a261be24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4554742d10d544bfe867dee5fde0f691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelAudio:
+  - {fileID: 8300000, guid: 02fbd835501cf470d921ba859e818911, type: 3}
+  - {fileID: 8300000, guid: 8cfd2784a62a54721b1155722381edec, type: 3}
+  - {fileID: 8300000, guid: 32d22d447b5104484af8a8c96b6a067c, type: 3}
+  - {fileID: 8300000, guid: cf69927a40b0644c692dc85f0b583789, type: 3}
+  death: {fileID: 8300000, guid: 6bac7fcb5dabf45ce9df845b39b9aeea, type: 3}
+  continueButton: {fileID: 8300000, guid: 7d1be6dd147da476fa41e9f9391bd7d8, type: 3}
+  playerHit: {fileID: 8300000, guid: c584e31278df044ff9389f4543ec0ed5, type: 3}
+  runLoop: {fileID: 8300000, guid: 40bf5205279264801bed91a15bd62a57, type: 3}
+  thunder: {fileID: 8300000, guid: 63feeac0a8e8f4bb78e08b9c31d3e3b5, type: 3}
+  enemyHit: {fileID: 8300000, guid: dd275332acfe74028afd41acf3465cc6, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

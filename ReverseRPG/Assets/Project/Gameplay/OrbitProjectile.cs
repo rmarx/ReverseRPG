@@ -59,6 +59,7 @@ public class OrbitProjectile : MonoBehaviour
 		yield return new WaitForSeconds( halfDuration );
 		if( enemy != null )
 		{
+			SoundManager.use.PlaySFX( SoundManager.use.enemyHit );
 			enemy.OnAttacked();
 			GameObject.Destroy( enemy.gameObject );
 		}
