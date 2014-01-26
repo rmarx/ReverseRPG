@@ -9,6 +9,8 @@ public class EffectsManager : LugusSingletonExisting<EffectsManager>
 	public GameObject poof = null;
 	public GameObject magicPoof = null;
 	public GameObject slashWithText = null;
+	public GameObject lavaBubble = null;
+	public GameObject smokeTrail = null;
 
 	public GameObject death = null;
 
