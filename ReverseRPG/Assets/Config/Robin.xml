@@ -1,22 +1,3 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Config>
-	<character>R!ckyBoi</character>
-	<health>100</health>
-	<mana>76</mana>
-	<strength>82.74319</strength>
-	<defense>78</defense>
-	<crippled>False</crippled>
-	<Robin>1234</Robin>
-	<Marx>Robin</Marx>
-	<C-MINE>100</C-MINE>
-	<downgrade.fire.shield>True</downgrade.fire.shield>
-	<downgrade.support.weapons>True</downgrade.support.weapons>
-	<downgrade.fire.lava>True</downgrade.fire.lava>
-	<downgrade.support.health>True</downgrade.support.health>
-	<downgrade.damage.shield>True</downgrade.damage.shield>
-	<downgrade.electric.shield>True</downgrade.electric.shield>
-	<downgrade.electric.lightning>True</downgrade.electric.lightning>
-	<downgrade.ending.freemove>True</downgrade.ending.freemove>
-	<downgrade.damage.grizzly>True</downgrade.damage.grizzly>
-	<level.previousTime>10.7087</level.previousTime>
 </Config>
