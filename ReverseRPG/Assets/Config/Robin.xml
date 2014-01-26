@@ -9,14 +9,14 @@
 	<Robin>1234</Robin>
 	<Marx>Robin</Marx>
 	<C-MINE>100</C-MINE>
-	<downgrade.fire.shield>True</downgrade.fire.shield>
-	<downgrade.support.weapons>True</downgrade.support.weapons>
-	<downgrade.fire.lava>True</downgrade.fire.lava>
-	<downgrade.support.health>True</downgrade.support.health>
-	<downgrade.damage.shield>True</downgrade.damage.shield>
-	<downgrade.electric.shield>True</downgrade.electric.shield>
-	<downgrade.electric.lightning>True</downgrade.electric.lightning>
+	<downgrade.fire.shield>False</downgrade.fire.shield>
+	<downgrade.support.weapons>False</downgrade.support.weapons>
+	<downgrade.fire.lava>False</downgrade.fire.lava>
+	<downgrade.support.health>False</downgrade.support.health>
+	<downgrade.damage.shield>False</downgrade.damage.shield>
+	<downgrade.electric.shield>False</downgrade.electric.shield>
+	<downgrade.electric.lightning>False</downgrade.electric.lightning>
 	<downgrade.ending.freemove>True</downgrade.ending.freemove>
-	<downgrade.damage.grizzly>True</downgrade.damage.grizzly>
-	<level.previousTime>4.027878</level.previousTime>
+	<downgrade.damage.grizzly>False</downgrade.damage.grizzly>
+	<level.previousTime>86.14901</level.previousTime>
 </Config>
