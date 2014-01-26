@@ -44,6 +44,8 @@ MonoBehaviour:
   poof: {fileID: 100000, guid: 3156817f64ec68948ad6bb26569b9ef5, type: 2}
   magicPoof: {fileID: 100018, guid: 51a86f32efb25674485dd9c5b35d8695, type: 2}
   slashWithText: {fileID: 100002, guid: 43d28f815894558468fd96fe627bb31c, type: 2}
+  lavaBubble: {fileID: 100004, guid: 2571e38f3d7e4614d90607e0a3c27c1a, type: 2}
+  smokeTrail: {fileID: 100000, guid: da81564b4b00b134f83b041302d04ab4, type: 2}
   death: {fileID: 100006, guid: 2a474af3f4c27be4e9bdce39cfe4315d, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:

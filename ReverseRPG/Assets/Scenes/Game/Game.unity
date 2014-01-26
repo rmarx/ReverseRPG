@@ -1362,6 +1362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lavaMaterial: {fileID: 2100000, guid: 367c18cddf58643a3a04baa2d704faa9, type: 2}
+  lavaAnimationStarted: 0
 --- !u!114 &41976835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7124,6 +7125,8 @@ MonoBehaviour:
   poof: {fileID: 100000, guid: 3156817f64ec68948ad6bb26569b9ef5, type: 2}
   magicPoof: {fileID: 100018, guid: 51a86f32efb25674485dd9c5b35d8695, type: 2}
   slashWithText: {fileID: 100002, guid: 43d28f815894558468fd96fe627bb31c, type: 2}
+  lavaBubble: {fileID: 100004, guid: 2571e38f3d7e4614d90607e0a3c27c1a, type: 2}
+  smokeTrail: {fileID: 100000, guid: da81564b4b00b134f83b041302d04ab4, type: 2}
   death: {fileID: 100006, guid: 2a474af3f4c27be4e9bdce39cfe4315d, type: 2}
 --- !u!4 &147258162
 Transform:
@@ -13480,7 +13483,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 252531135}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 37.9849777, y: .298999995, z: -13.3650208}
+  m_LocalPosition: {x: 37.9849777, y: .855720758, z: -13.3650208}
   m_LocalScale: {x: 2.61225009, y: 2.612252, z: 2.612252}
   m_Children: []
   m_Father: {fileID: 1307335159}
@@ -16149,6 +16152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lavaMaterial: {fileID: 2100000, guid: 367c18cddf58643a3a04baa2d704faa9, type: 2}
+  lavaAnimationStarted: 0
 --- !u!114 &346391108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19600,7 +19604,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 435624692}
   m_LocalRotation: {x: 0, y: .707106829, z: -.707106829, w: 0}
-  m_LocalPosition: {x: 12.4908695, y: .298999995, z: 3.84072876}
+  m_LocalPosition: {x: 12.4908695, y: .855720758, z: 3.84072876}
   m_LocalScale: {x: 2.19877434, y: 2.19877338, z: 2.19877338}
   m_Children: []
   m_Father: {fileID: 1307335159}
@@ -27008,7 +27012,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 624322229}
   m_LocalRotation: {x: 0, y: .707106829, z: -.707106829, w: 0}
-  m_LocalPosition: {x: -7.97558737, y: .298999995, z: -.710479736}
+  m_LocalPosition: {x: -7.97558737, y: .855720758, z: -.710479736}
   m_LocalScale: {x: 2.24067831, y: 2.24067831, z: 2.24067831}
   m_Children: []
   m_Father: {fileID: 1307335159}
@@ -30455,7 +30459,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 662960446}
   m_LocalRotation: {x: 0, y: .707106829, z: -.707106829, w: 0}
-  m_LocalPosition: {x: -28.794445, y: .298999995, z: -8.8374939}
+  m_LocalPosition: {x: -28.794445, y: .855720758, z: -8.8374939}
   m_LocalScale: {x: 2.612252, y: 2.612252, z: 2.612252}
   m_Children: []
   m_Father: {fileID: 1307335159}
@@ -30964,6 +30968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lavaMaterial: {fileID: 2100000, guid: 367c18cddf58643a3a04baa2d704faa9, type: 2}
+  lavaAnimationStarted: 0
 --- !u!114 &679277795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34640,6 +34645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lavaMaterial: {fileID: 2100000, guid: 367c18cddf58643a3a04baa2d704faa9, type: 2}
+  lavaAnimationStarted: 0
 --- !u!114 &765849965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49837,7 +49843,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1142865340}
   m_LocalRotation: {x: 0, y: .707106829, z: -.707106829, w: 0}
-  m_LocalPosition: {x: 33.1877098, y: .298999995, z: 8.60855103}
+  m_LocalPosition: {x: 33.1877098, y: .855720758, z: 8.60855103}
   m_LocalScale: {x: 2.39245319, y: 2.39245129, z: 2.39245129}
   m_Children: []
   m_Father: {fileID: 1307335159}
@@ -51933,6 +51939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lavaMaterial: {fileID: 2100000, guid: 367c18cddf58643a3a04baa2d704faa9, type: 2}
+  lavaAnimationStarted: 0
 --- !u!114 &1167080021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53320,6 +53327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lavaMaterial: {fileID: 2100000, guid: 367c18cddf58643a3a04baa2d704faa9, type: 2}
+  lavaAnimationStarted: 0
 --- !u!114 &1195711418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55544,6 +55552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lavaMaterial: {fileID: 2100000, guid: 367c18cddf58643a3a04baa2d704faa9, type: 2}
+  lavaAnimationStarted: 0
 --- !u!114 &1236434059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56690,6 +56699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lavaMaterial: {fileID: 2100000, guid: 367c18cddf58643a3a04baa2d704faa9, type: 2}
+  lavaAnimationStarted: 0
 --- !u!114 &1268233246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67997,7 +68007,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1488953657}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 14.0373058, y: .298999995, z: -12.4981384}
+  m_LocalPosition: {x: 14.0373058, y: .855720758, z: -12.4981384}
   m_LocalScale: {x: 2.61225009, y: 2.612252, z: 2.612252}
   m_Children: []
   m_Father: {fileID: 1307335159}
@@ -73256,6 +73266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lavaMaterial: {fileID: 2100000, guid: 367c18cddf58643a3a04baa2d704faa9, type: 2}
+  lavaAnimationStarted: 0
 --- !u!114 &1633789682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74565,6 +74576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lavaMaterial: {fileID: 2100000, guid: 367c18cddf58643a3a04baa2d704faa9, type: 2}
+  lavaAnimationStarted: 0
 --- !u!114 &1665043763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84253,6 +84265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lavaMaterial: {fileID: 2100000, guid: 367c18cddf58643a3a04baa2d704faa9, type: 2}
+  lavaAnimationStarted: 0
 --- !u!114 &1900437267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88781,7 +88794,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1999889201}
   m_LocalRotation: {x: 0, y: .707106829, z: -.707106829, w: 0}
-  m_LocalPosition: {x: -38.2218018, y: .298999995, z: 11.4258728}
+  m_LocalPosition: {x: -38.2218018, y: .855720758, z: 11.4258728}
   m_LocalScale: {x: 2.33404112, y: 2.33403993, z: 2.33403993}
   m_Children: []
   m_Father: {fileID: 1307335159}
@@ -89279,7 +89292,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2016402958}
   m_LocalRotation: {x: -3.09086232e-08, y: .707106829, z: -.707106829, w: -3.09086232e-08}
-  m_LocalPosition: {x: -7.44744301, y: .298999995, z: -10.8963623}
+  m_LocalPosition: {x: -7.44744301, y: .855720758, z: -10.8963623}
   m_LocalScale: {x: 2.61225009, y: 2.612252, z: 2.612252}
   m_Children: []
   m_Father: {fileID: 1307335159}

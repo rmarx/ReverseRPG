@@ -47,6 +47,8 @@ public class LavaWater : MonoBehaviour
 
 	protected IEnumerator animateLava()
 	{
+		//yield break;
+		
 		Debug.LogWarning("lava anim");
 		//add random lava effects
 		while (true) {
