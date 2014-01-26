@@ -5,6 +5,7 @@ using System.Collections;
 /// Automatically destroys the GameObject when there are no children left.
 /// </summary>
 
+/*
 public class CFX_AutodestructWhenNoChildren : MonoBehaviour
 {
 	// Update is called once per frame
@@ -16,3 +17,4 @@ public class CFX_AutodestructWhenNoChildren : MonoBehaviour
 		}
 	}
 }
+*/

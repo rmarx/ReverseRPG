@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class LavaWater : MonoBehaviour 
 {
 	public Material lavaMaterial = null;
-	public bool lavaAnimationStarted = false;
+	public bool lavaAnimationStarted = true;
 
 	public void Switch()
 	{
@@ -13,11 +13,14 @@ public class LavaWater : MonoBehaviour
 
 		this.GetComponent<EnemyTarget>().enabled = true;
 
+		lavaAnimationStarted = false;
+
 	}
 
 	public void SetupLocal()
 	{
 		// assign variables that have to do with this class only
+		lavaAnimationStarted = true;
 	}
 	
 	public void SetupGlobal()
