@@ -8,8 +8,6 @@ public class VicinityBehaviour : MonoBehaviour {
 	public GameObject mainCharacter = null;
 	public GameObject teddyBearHolesParent;
 	public Transform[] teddyBearHolesChildren;
-	public Vector3 directionToMainCharacter;
-	public Vector3 directionToMove;
 	public bool mainCharacterIsClose = false;
 	public bool startedRunning = false;
 	public Transform closestHole = null;
@@ -32,6 +30,8 @@ public class VicinityBehaviour : MonoBehaviour {
 		}
 		
 		teddyBearHolesChildren = teddyBearHolesParent.transform.GetComponentsInChildren<Transform>();
+		Animator anim = transform.GetComponentInChildren<Animator> ();
+		anim.enabled = false;
 	}
 
 	protected void Awake()
@@ -84,6 +84,18 @@ public class VicinityBehaviour : MonoBehaviour {
 
 	protected void RunToHole(Transform hole)
 	{
-		this.gameObject.MoveTo(hole.position).Speed(40.0f).Execute();
+		Animator anim = transform.GetComponentInChildren<Animator> ();
+		anim.enabled = true;
+		LugusCoroutines.use.StartRoutine (RunToHoleRoutine (hole));
+	}
+
+	protected IEnumerator RunToHoleRoutine(Transform hole)
+	{
+		this.gameObject.MoveTo(hole.position).Time(0.5f).Execute();
+
+		yield return new WaitForSeconds( 0.5f );
+
+		GameObject.Destroy (this.gameObject);
+		EffectsManager.use.Spawn (EffectsManager.use.magicPoof, new Vector3( hole.position.x, hole.position.y+5.0f, hole.position.z));
 	}
 }
