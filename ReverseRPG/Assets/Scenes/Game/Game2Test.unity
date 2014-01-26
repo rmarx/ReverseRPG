@@ -3157,6 +3157,18 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 400026, guid: 2c86e7d96ff484c83b74dbb2eb009084, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 4.27981949
+      objectReference: {fileID: 0}
+    - target: {fileID: 10200004, guid: 2c86e7d96ff484c83b74dbb2eb009084, type: 2}
+      propertyPath: m_Text
+      value: Suicide Success!
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c86e7d96ff484c83b74dbb2eb009084, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.4558754
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c86e7d96ff484c83b74dbb2eb009084, type: 2}
   m_RootGameObject: {fileID: 262813134}
@@ -19893,7 +19905,7 @@ Transform:
   m_PrefabInternal: {fileID: 88333735}
   m_GameObject: {fileID: 493873203}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.01517487, z: -.46282959}
+  m_LocalPosition: {x: 0, y: 4.27981949, z: -.46282959}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 468571285}
@@ -19905,7 +19917,7 @@ TextMesh:
     type: 2}
   m_PrefabInternal: {fileID: 88333735}
   m_GameObject: {fileID: 493873203}
-  m_Text: Success!
+  m_Text: Suicide Success!
   m_OffsetZ: 0
   m_CharacterSize: .0500000007
   m_LineSpacing: 1
@@ -39295,7 +39307,7 @@ Transform:
   m_PrefabInternal: {fileID: 88333735}
   m_GameObject: {fileID: 996464463}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.65465927, z: -.46282959}
+  m_LocalPosition: {x: 0, y: 2.4558754, z: -.46282959}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 468571285}

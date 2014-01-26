@@ -113,12 +113,14 @@ public class CharacterInteraction : LugusSingletonExisting<CharacterInteraction>
 
 		EffectsManager.use.Spawn( EffectsManager.use.death, this.transform.position );
 
+		float prevTime = LugusConfig.use.User.GetFloat( "level.previousTime", 0.0f );
+
 		float finalTime = Time.time - startTime;
 		LugusConfig.use.User.SetFloat( "level.previousTime", finalTime, true );
 
 		yield return new WaitForSeconds(2.0f);
 
-		DowngradeMenu.use.Show( finalTime );
+		DowngradeMenu.use.Show( prevTime, finalTime );
 	}
 
 

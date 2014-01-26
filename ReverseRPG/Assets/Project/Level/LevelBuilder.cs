@@ -247,7 +247,7 @@ public class LevelBuilder : LugusSingletonExisting<LevelBuilder>
 	protected void Update () 
 	{
 		if( LugusInput.use.KeyDown(KeyCode.M) )
-			DowngradeMenu.use.Show( 25 );
+			DowngradeMenu.use.Show( 24, 25 );
 		
 		if( LugusInput.use.KeyDown(KeyCode.Escape) )
 			Application.LoadLevel("Menu");
