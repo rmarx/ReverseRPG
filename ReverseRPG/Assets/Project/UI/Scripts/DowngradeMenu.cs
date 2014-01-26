@@ -14,7 +14,7 @@ public class DowngradeMenu : LugusSingletonExisting<DowngradeMenu>
 
 	public GameObject highlight = null;
 
-	public void Show(float levelTime)
+	public void Show(float prevTime, float levelTime)
 	{
 		if( LevelBuilder.use.downgradeCount == 8 )
 		{
@@ -26,8 +26,30 @@ public class DowngradeMenu : LugusSingletonExisting<DowngradeMenu>
 			transform.FindChild("EndScreen").gameObject.SetActive(true);
 		}
 
-		transform.FindChild("LevelDescription").GetComponent<TextMesh>().text = "You have succeeded in killing yourself in " + levelTime + " seconds.\nNow pick a new downgrade and die faster next time!";
+		//float prevTime = LugusConfig.use.User.GetFloat("level.previousTime", 0.0f);
+		if( prevTime != 0.0f )
+		{
+			string message = "";
+			if( prevTime < levelTime )
+			{
+				message = "You were " + (levelTime - prevTime) + "s slower than last time!\nGet another downgrade to die quicker!";
+			}
+			else
+			{
+				message = "Excellent! You're improving your time!\nYou can die even more quickly with one of these downgrades!";
+			}
 
+			message = "Time: " + levelTime + "s\n" + message;
+
+			transform.FindChild("LevelDescription").GetComponent<TextMesh>().text = message;
+		}
+		else
+		{
+			transform.FindChild("LevelDescription").GetComponent<TextMesh>().text = "You have succeeded in killing yourself in " + levelTime + " seconds.\nNow pick a new downgrade and die faster next time!";
+
+		}
+
+		
 		gameObject.MoveTo( this.transform.localPosition.y(0.0f) ).IsLocal(true).Time(2.0f).EaseType(iTween.EaseType.easeOutBack).Execute();
 
 	}
@@ -126,7 +148,7 @@ public class DowngradeMenu : LugusSingletonExisting<DowngradeMenu>
 		CreateButton( 
 		             "downgrade.fire.shield",
 		    		 "Fire_Shield",
-		             "Removes the fire shield,\nmaking you vulnerable to Lava",
+		             "Removes the fire shield,\nmaking you twice as vulnerable to Lava",
 		             new Vector3(x,y,0) );
 
 		CreateButton( 
@@ -140,7 +162,7 @@ public class DowngradeMenu : LugusSingletonExisting<DowngradeMenu>
 		CreateButton( 
 		             "downgrade.electric.shield",
 		             "Lightning_Shield",
-		             "Removes the electric shield, \nmaking you vulnerable to Lightning",
+		             "Removes the electric shield, \nmaking you twice as vulnerable to Lightning",
 		             new Vector3(x,y,0) );
 		
 		CreateButton( 
@@ -155,7 +177,7 @@ public class DowngradeMenu : LugusSingletonExisting<DowngradeMenu>
 		CreateButton( 
 		             "downgrade.damage.shield",
 		             "Damage_Shield",
-		             "Removes the melee shield, \nmaking you vulnerable to direct attack",
+		             "Removes the melee shield, \nmaking you twice as vulnerable to direct attack",
 		             new Vector3(x,y,0) );
 		
 		CreateButton( 
