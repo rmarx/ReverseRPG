@@ -40,18 +40,21 @@ public class LightningStrike : MonoBehaviour
 	{
 		while( true )
 		{
-			GameObject effect = EffectsManager.use.Spawn( effectPrefab, this.transform.position );
+			if( Vector3.Distance(CharacterInteraction.use.transform.position, this.transform.position) < 100.0f )
+			{
+				GameObject effect = EffectsManager.use.Spawn( effectPrefab, this.transform.position );
 
-			//this.collider.enabled = true;
-			GameObject.Destroy( effect, 5.0f );
+				//this.collider.enabled = true;
+				GameObject.Destroy( effect, Random.Range(4.0f, 6.0f) );
 
-			if( Vector3.Distance(CharacterInteraction.use.transform.position, this.transform.position) < 20.0f )
-				SoundManager.use.PlaySFX( SoundManager.use.thunder );
+				if( Vector3.Distance(CharacterInteraction.use.transform.position, this.transform.position) < 20.0f )
+					SoundManager.use.PlaySFX( SoundManager.use.thunder );
 
-			yield return new WaitForSeconds( 0.5f );
-			//this.collider.enabled = false;
+				yield return new WaitForSeconds( 0.5f );
+				//this.collider.enabled = false;
 
-			yield return new WaitForSeconds( Random.Range(0.5f, 1.0f) );
+			}
+			yield return new WaitForSeconds( Random.Range(1.0f, 1.5f) );
 		}
 	}
 }
