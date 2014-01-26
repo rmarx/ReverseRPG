@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class LevelBuilder : MonoBehaviour 
 {
+	public Sprite[] treeSpritesGood;
+	public Sprite[] treeSpritesEvil;
+
 	public void SetupLocal()
 	{
 		// assign variables that have to do with this class only
@@ -15,7 +18,9 @@ public class LevelBuilder : MonoBehaviour
 	public void SetupGlobal()
 	{
 		// lookup references to objects / scripts outside of this script
-		
+
+		int downgradeCount = 0;
+
 		if( LugusConfig.use.User.GetBool("downgrade.fire.shield", false) )
 		{
 			ForceField[] fields = CharacterInteraction.use.forceFields;
@@ -31,6 +36,8 @@ public class LevelBuilder : MonoBehaviour
 
 			// force rebuilding of the forceFields array
 			CharacterInteraction.use.FetchForceFields();
+
+			++downgradeCount;
 		}
 
 		if( LugusConfig.use.User.GetBool ("downgrade.fire.lava", false) )
@@ -41,6 +48,8 @@ public class LevelBuilder : MonoBehaviour
 			{
 				lava.Switch ();
 			}
+
+			++downgradeCount;
 		}
 		
 		if( LugusConfig.use.User.GetBool ("downgrade.support.weapons", false) )
@@ -54,11 +63,15 @@ public class LevelBuilder : MonoBehaviour
 			
 			// force rebuilding of the forceFields array
 			CharacterInteraction.use.FetchProjectiles();
+
+			++downgradeCount;
 		}
 		
 		if( LugusConfig.use.User.GetBool ("downgrade.support.health", false) )
 		{
 			CharacterInteraction.use.SetMaxHealth( CharacterInteraction.use.maxHealth / 2.0f );
+			
+			++downgradeCount;
 		}
 		
 		if( LugusConfig.use.User.GetBool("downgrade.electric.shield", false) )
@@ -76,19 +89,28 @@ public class LevelBuilder : MonoBehaviour
 			
 			// force rebuilding of the forceFields array
 			CharacterInteraction.use.FetchForceFields();
+			
+			++downgradeCount;
 		}
-		
-		if( LugusConfig.use.User.GetBool ("downgrade.electric.lightning", false) )
+
+		// a bit different here: if lightning is NOT enabled we need to disable it of course
+		if( !LugusConfig.use.User.GetBool ("downgrade.electric.lightning", false) )
 		{
 			// TODO!!!
-			/*
-			LavaWater[] lavas = GameObject.FindObjectsOfType<LavaWater>();
+
+			LightningStrike[] strikes = GameObject.FindObjectsOfType<LightningStrike>();
 			
-			foreach( LavaWater lava in lavas )
+			foreach( LightningStrike strike in strikes )
 			{
-				lava.Switch ();
+				GameObject.Destroy(strike.gameObject);
 			}
-			*/
+
+		}
+		else
+		{
+			
+			++downgradeCount;
+
 		}
 
 		
@@ -107,12 +129,97 @@ public class LevelBuilder : MonoBehaviour
 			
 			// force rebuilding of the forceFields array
 			CharacterInteraction.use.FetchForceFields();
+			
+			++downgradeCount;
 		}
 
 		if( LugusConfig.use.User.GetBool("downgrade.damage.grizzly", false) )
 		{
 			// TODO:!!!
+			
+			++downgradeCount;
 		}
+
+		if( LugusConfig.use.User.GetBool("downgrade.ending.freemove", false) )
+		{
+			CharacterInteraction.use.GetComponent<IsometricMovement>().freeMove = true;
+		}
+
+		ChangeWorld( downgradeCount );
+	}
+
+	protected void ChangeWorld(int downgradeCount )
+	{
+		// 4 = world chagne
+		// 6 = slave // mss eerder vanaf health downgrade?
+		// 8 = kleinere slave?
+
+		Debug.Log ("Changing world " + downgradeCount);
+
+		if(  downgradeCount < 6 )
+		{
+			//Debug.Log ("Shrinking boss");
+
+			
+			Transform slave = CharacterInteraction.use.transform.FindChild("AnimationSlave");
+			GameObject.Destroy( slave.gameObject );
+
+			//Transform boss = CharacterInteraction.use.transform.FindChild("AnimationBoss");
+			//boss.localScale *= 0.7f;
+		}
+
+		GameObject[] trees = GameObject.FindGameObjectsWithTag("Tree");
+		GameObject[] ground = GameObject.FindGameObjectsWithTag ("Ground");
+		CloudBobbing[] clouds = GameObject.FindObjectsOfType<CloudBobbing>();
+
+		if( downgradeCount > 2 )
+		{
+			foreach( GameObject tree in trees )
+			{
+				tree.GetComponent<SpriteRenderer>().sprite = treeSpritesEvil[ Random.Range(0, treeSpritesEvil.Length) ];
+			}
+		}
+		else
+		{
+			foreach( GameObject tree in trees )
+			{
+				tree.GetComponent<SpriteRenderer>().sprite = treeSpritesGood[ Random.Range(0, treeSpritesGood.Length) ];
+			}
+		}
+
+		Color groundColor = Color.white;
+		Color cloudColor = Color.white;
+		if( downgradeCount < 2 )
+		{
+			groundColor = new Color(255 / 255.0f, 150 / 255.0f, 255 / 226.0f);
+			cloudColor = new Color(214 / 255.0f, 245 / 255.0f, 255 / 255.0f);
+
+		}
+		else if( downgradeCount >= 6 )
+		{
+			groundColor = new Color(126 / 255.0f, 2 / 255.0f, 2 / 255.0f);
+			cloudColor = Color.black;
+		}
+
+		foreach( GameObject groundPiece in ground )
+		{
+			groundPiece.GetComponent<SpriteRenderer>().color = groundColor;
+		}
+		
+		LugusCamera.game.backgroundColor = cloudColor;
+		foreach( CloudBobbing cloud in clouds )
+		{
+			cloud.GetComponent<SpriteRenderer>().color = cloudColor;
+		}
+
+
+		if( downgradeCount >= 6 )
+		{
+			Transform boss = CharacterInteraction.use.transform.FindChild("AnimationBoss");
+			GameObject.Destroy( boss.gameObject );
+		}
+
+
 	}
 	
 	protected void Awake()
@@ -127,7 +234,8 @@ public class LevelBuilder : MonoBehaviour
 	
 	protected void Update () 
 	{
-	
+		if( LugusInput.use.KeyDown(KeyCode.M) )
+			DowngradeMenu.use.Show( 25 );
 	}
 
 	public void OnGUI()
@@ -135,7 +243,7 @@ public class LevelBuilder : MonoBehaviour
 		if( !LugusDebug.debug )
 			return;
 
-		GUILayout.BeginArea( new Rect(0, 0, 350, 500) );
+		GUILayout.BeginArea( new Rect(0, 0, 350, 500), GUI.skin.box );
 		
 		LugusConfigUtil.GUIAutoSave();
 		LugusConfig.use.User.GUIBoolInput("downgrade.fire.shield");
@@ -150,10 +258,20 @@ public class LevelBuilder : MonoBehaviour
 		LugusConfig.use.User.GUIBoolInput("downgrade.damage.shield");
 		LugusConfig.use.User.GUIBoolInput("downgrade.damage.grizzly");
 
+		
+		LugusConfig.use.User.GUIBoolInput("downgrade.ending.freemove");
+
 
 		GUILayout.EndArea();
 	}
 
+	public void OnDisable()
+	{
+		if( LugusConfigUtil.autosave )
+		{
+			LugusConfig.use.SaveProfiles();
+		}
+	}
 	
 	public void OnApplicationQuit()
 	{

@@ -25,7 +25,10 @@ public class LightningStrike : MonoBehaviour
 	{
 		SetupGlobal();
 
-		StartCoroutine( StrikeRoutine() );
+		if( LugusConfig.use.User.GetBool ("downgrade.electric.lightning", false) )
+		{
+			StartCoroutine( StrikeRoutine() );
+		}
 	}
 	
 	protected void Update () 
